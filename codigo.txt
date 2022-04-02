@@ -1,0 +1,4 @@
+for i = 1:N
+    w = transpose(W(i, :));
+    J(i) = var(d) + 2*transpose(p)*w + transpose(w)*R*w;
+end
