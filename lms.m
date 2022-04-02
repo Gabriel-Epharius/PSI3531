@@ -22,7 +22,7 @@ erro = zeros(1,N);
 y = zeros(1,N);
 for n=1:N
    X=[x(n);X(1:M-1)];
-   y=W(n,:)*X;
+   y(n)=W(n,:)*X;
    erro(n)=d(n)-y(n); 
    W(n+1,:)=W(n,:)+mu*erro(n)*X';
 end;
