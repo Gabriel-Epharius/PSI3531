@@ -27,9 +27,9 @@ p = [2.1651; 1.0168];
 
 wO = R\p;
 
-sigma_s = sqrt(var(s));
 
-J_min = sigma_s^2 - transpose(p)*wO;
+
+J_min = var(d) - transpose(wO)*p;
 
 H = freqz(wO);
 
@@ -72,7 +72,7 @@ J = zeros(100,100);
 for i = 1:100
     for j = 1:100
         wij = [W0(i,j); W1(i,j)];
-        J(i, j) = var(d) + 2*transpose(p)*wij + transpose(wij)*R*wij;
+        J(i, j) = var(d) - 2*transpose(p)*wij + transpose(wij)*R*wij;
     end
 end
 
@@ -88,7 +88,7 @@ plot(wO(1), wO(2), 'p', 'MarkerSize', 12) %wO calculado analiticamente
 J_iterado = zeros(1,501);
 for i = 1:1:501
     w = transpose(W(i,:));
-    J_iterado(i) = var(d) + 2*transpose(p)*w + transpose(w)*R*w;
+    J_iterado(i) = var(d) - 2*transpose(p)*w + transpose(w)*R*w;
 end 
 
 %desenhando nas curvas de nivel
